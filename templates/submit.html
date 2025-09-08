@@ -1,0 +1,25 @@
+<!-- submit.html -->
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">शिकायत दर्ज करें / Submit Complaint</h1>
+<form method="post" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <input name="name" placeholder="नाम / Name*" class="p-2 rounded text-black" required>
+  <input name="email" type="email" placeholder="ईमेल / Email*" class="p-2 rounded text-black" required>
+  <select name="role" class="p-2 rounded text-black">
+    <option>Student</option>
+    <option>Employee</option>
+  </select>
+  <select name="category" class="p-2 rounded text-black">
+    <option>Electrical</option>
+    <option>Cleanliness</option>
+    <option>IT</option>
+    <option>Other</option>
+  </select>
+  <input name="location" placeholder="स्थान / Location" class="p-2 rounded text-black">
+  <input name="title" placeholder="समस्या शीर्षक / Issue Title*" class="p-2 rounded text-black" required>
+  <textarea name="description" placeholder="विवरण / Description*" rows="4" class="p-2 rounded text-black md:col-span-2" required></textarea>
+  <div class="md:col-span-2 flex justify-end">
+    <button class="px-5 py-2 bg-white text-black font-semibold rounded hover:bg-gray-200">Submit / सबमिट</button>
+  </div>
+</form>
+{% endblock %}
