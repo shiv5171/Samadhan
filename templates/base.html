@@ -1,0 +1,57 @@
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Civic Issue Reporting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .glass {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .gradient {
+      background: linear-gradient(135deg, #038093, #876dd3, #ad4d7e);
+    }
+  </style>
+</head>
+<body class="min-h-screen gradient text-white">
+  <nav class="p-4 flex justify-between items-center">
+    <a href="{{ url_for('submit_complaint') }}" class="font-bold">शिकायत दर्ज करें / Submit</a>
+    <div class="space-x-4">
+      <a href="{{ url_for('list_complaints') }}">इतिहास / History</a>
+      {% if session.get('is_admin') %}
+      <a href="{{ url_for('admin_dashboard') }}">Admin Panel</a>
+      <a href="{{ url_for('admin_logout') }}">Logout</a>
+      {% else %}
+      <a href="{{ url_for('admin_login') }}">Admin Login</a>
+      {% endif %}
+    </div>
+  </nav>
+  <h1 class="text-center text-5xl sm:text-6xl font-bold font-en brand-gradient mt-8 mb-4 tracking-wide">
+  Samadhan
+</h1>
+
+
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="max-w-3xl mx-auto mt-4 space-y-2">
+        {% for category, msg in messages %}
+          <div class="glass p-3 rounded">{{ msg }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <main class="max-w-3xl mx-auto p-4">
+    <div class="glass p-6 rounded-xl shadow-xl">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <footer class="text-center py-6">© Civic Issue Reporting System 2025</footer>
+</body>
+</html>
