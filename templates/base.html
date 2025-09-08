@@ -6,6 +6,7 @@
   <title>Civic Issue Reporting</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://cdn.tailwindcss.com"></script>
+  
   <style>
     .glass {
       backdrop-filter: blur(10px);
@@ -15,24 +16,44 @@
     .gradient {
       background: linear-gradient(135deg, #038093, #876dd3, #ad4d7e);
     }
+   
+
   </style>
 </head>
 <body class="min-h-screen gradient text-white">
-  <nav class="p-4 flex justify-between items-center">
-    <a href="{{ url_for('submit_complaint') }}" class="font-bold">शिकायत दर्ज करें / Submit</a>
-    <div class="space-x-4">
-      <a href="{{ url_for('list_complaints') }}">इतिहास / History</a>
+  <nav class="mx-4 my-4 px-6 py-4 flex flex-wrap justify-between items-center bg-white/10 backdrop-blur-md rounded-xl shadow-md">
+    <a href="{{ url_for('submit_complaint') }}" class="font-bold text-lg text-white hover:text-[#FFD140] transition duration-300">
+      शिकायत दर्ज करें / Submit
+    </a>
+    <div class="space-x-4 text-sm font-medium">
+      <a href="{{ url_for('list_complaints') }}" class="hover:text-[#3AAFFF] transition duration-300">
+        इतिहास / History
+      </a>
       {% if session.get('is_admin') %}
-      <a href="{{ url_for('admin_dashboard') }}">Admin Panel</a>
-      <a href="{{ url_for('admin_logout') }}">Logout</a>
+        <a href="{{ url_for('admin_dashboard') }}" class="hover:text-[#3CAE8B] transition duration-300">
+          Admin Panel
+        </a>
+        <a href="{{ url_for('admin_logout') }}" class="hover:text-red-400 transition duration-300">
+          Logout
+        </a>
       {% else %}
-      <a href="{{ url_for('admin_login') }}">Admin Login</a>
+        <a href="{{ url_for('admin_login') }}" class="hover:text-[#FD6F61] transition duration-300">
+          Admin Login
+        </a>
       {% endif %}
     </div>
   </nav>
-  <h1 class="text-center text-5xl sm:text-6xl font-bold font-en brand-gradient mt-8 mb-4 tracking-wide">
-  Samadhan
+
+<h1 class="text-center text-5xl sm:text-6xl md:text-7xl font-bold tracking-wide mt-10 mb-6 relative group">
+  <span class="bg-gradient-to-r from-[#3A3967] via-[#6EE7F9] to-[#FD6F61] text-transparent bg-clip-text drop-shadow-lg block group-hover:opacity-0 transition duration-300">
+    Samadhan
+  </span>
+  <span class="absolute inset-0 bg-gradient-to-r from-[#FD6F61] via-[#A78BFA] to-[#3A3967] text-transparent bg-clip-text drop-shadow-lg opacity-0 group-hover:opacity-100 transition duration-300">
+    समाधान
+  </span>
 </h1>
+
+
 
 
 
@@ -51,7 +72,8 @@
       {% block content %}{% endblock %}
     </div>
   </main>
-
+  
+  
   <footer class="text-center py-6">© Civic Issue Reporting System 2025</footer>
 </body>
 </html>
